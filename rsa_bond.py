@@ -24,9 +24,4 @@ def rsab(bond=None, trade_yield_or_price=0.00, number_of_units=0, transaction_da
     rsab_tkt.loc['nonStandardSettlement', 'Value'] = False  # Check that it doesn't get evaluated on export
     return rsab_tkt
 
-
-tkt = rsab(bond='R2048', trade_yield_or_price=0.10, number_of_units=1000, bank_broker='ABSA', trader='Jacob')
-print(tkt)
-tkt.to_excel('rsab_test.xlsx', header=False, index=True)
-
 # output Successfully uploaded into Alchemy

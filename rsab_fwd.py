@@ -1,11 +1,11 @@
 import pandas as pd
-from datetime import datetime
+from datetime import datetime ,timedelta
 
 today = datetime(datetime.today().year, datetime.today().month, datetime.today().day, 12, 0, 0)  # clunky
 
 
-def rsab_fwd(bond=None, forward_yield=0.10, number_of_units=0, transaction_date=today, trader=None,
-             repo_rate=0.00, counterparty=None, book='A:LG:ALM TREASURY:REPBND:U', far_maturity_date=None):
+def rsab_fwd(bond=None, forward_yield=0.10, number_of_units=0, transaction_date=today, trader=None, repo_rate=0.00,
+             counterparty=None, book='A:LG:ALM TREASURY:REPBND:U', far_maturity_date=None):
 
     # load default ticket template and bank counterparties
     rsab_fwd_tkt = pd.read_excel('Template_BondFwd.xlsx', index_col='Key')
@@ -15,7 +15,7 @@ def rsab_fwd(bond=None, forward_yield=0.10, number_of_units=0, transaction_date=
     mm = far_maturity_date.strftime("%m")
     dd = far_maturity_date.strftime("%d")
 
-    trade_ref = f'{yyyy}{mm}{dd}_{bond}_{counterparty}'
+    trade_ref = f'{yyyy}{mm}{dd}_{bond}_BNDFWD_{counterparty}'
 
     rsab_fwd_tkt.loc['tradeReference'] = trade_ref
     rsab_fwd_tkt.loc['transactionDate'] = transaction_date
@@ -31,17 +31,4 @@ def rsab_fwd(bond=None, forward_yield=0.10, number_of_units=0, transaction_date=
     return rsab_fwd_tkt
 
 
-far_date = datetime(2020, 6, 17, 18, 0, 0)
-
-tkt = rsab_fwd(counterparty='RMBJ', repo_rate=0.0565, number_of_units=100, trader='Nico Nchabeleng', bond='R2048',
-               far_maturity_date=far_date)
-print(tkt)
-
-'''
-required functionality:
-1. ability to price given inputs
-2. default portfolio choice for a given desk input (external dict)
-3. Counterparty mapping - Done
-4. Create and xlsx that Alchemy can read
-5. Cater for internal trades
-'''
+# output Successfully uploaded into Alchemy
