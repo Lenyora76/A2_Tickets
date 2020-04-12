@@ -43,10 +43,9 @@ ed_int_fwd_tkt = rsab_fwd(bond=bond, forward_yield=forward_yield, number_of_unit
                           repo_rate=repo_rate, far_maturity_date=far_maturity_date, book=book,
                           counterparty=counterparty)
 
-mkt_ext_spot_tkt.to_excel(f'test_{bond}_ext_spot.xlsx')
-mkt_int_spot_tkt.to_excel(f'test_{bond}_int_spot_mkt.xlsx')
-trs_int_spot_tkt.to_excel(f'test_{bond}_int_spot_trs.xlsx')
-trs_int_fwd_tkt.to_excel(f'test_{bond}_int_fwd_trs.xlsx')
-ed_int_fwd_tkt.to_excel(f'test_{bond}_int_fwd_ed.xlsx')
-
+mkt_ext_spot_tkt.to_excel(f'test_{bond}_ext_spot.xlsx', header=False)
+mkt_int_spot_tkt.to_excel(f'test_{bond}_int_spot_mkt.xlsx', header=False)
+trs_int_spot_tkt.to_excel(f'test_{bond}_int_spot_trs.xlsx', header=False)
+trs_int_fwd_tkt.to_excel(f'test_{bond}_int_fwd_trs.xlsx', header=False)
+ed_int_fwd_tkt.to_excel(f'test_{bond}_int_fwd_ed.xlsx', header=False)
 
