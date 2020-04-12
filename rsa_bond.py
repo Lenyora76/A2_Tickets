@@ -4,8 +4,9 @@ from datetime import datetime
 today = datetime(datetime.today().year, datetime.today().month, datetime.today().day, 12, 0, 0)  # clunky
 
 
-def rsab(bond=None, trade_yield_or_price=0.00, number_of_units=0, transaction_date=today, unexcor_code='FYN544',
-         bank_broker=None, trader=None, counterparty='Government of South Africa'):
+def rsab(bond=None, trade_yield_or_price=0.00, number_of_units=0, transaction_date=today,
+         book='A:LG:ALM MRM ANN AND GCB:GOVBND:U', bank_broker=None, trader=None,
+         counterparty='Government of South Africa'):
 
     # load default ticket template, unexcor portfolio mapping and bank counterparties
     rsab_tkt = pd.read_excel('Template_BondSpot.xlsx', index_col='Key')
@@ -14,7 +15,7 @@ def rsab(bond=None, trade_yield_or_price=0.00, number_of_units=0, transaction_da
     # populate template with trade details
     rsab_tkt.loc['tradeReference', 'Value'] = bond
     rsab_tkt.loc['transactionDate', 'Value'] = transaction_date
-    rsab_tkt.loc['book', 'Value'] = u_codes.loc[unexcor_code, 'Portfolio']
+    rsab_tkt.loc['book', 'Value'] = book
     rsab_tkt.loc['counterparty'] = f'{counterparty}|Global Markets Liberty'
     rsab_tkt.loc['numberOfUnits', 'Value'] = number_of_units
     rsab_tkt.loc['specialInfo1', 'Value'] = bank_broker
