@@ -5,7 +5,7 @@ today = datetime(datetime.today().year, datetime.today().month, datetime.today()
 
 
 def rsab_fwd(bond=None, forward_yield=0.10, number_of_units=0, transaction_date=today, trader=None, repo_rate=0.00,
-             counterparty=None, book='A:LG:ALM TREASURY:REPBND:U', far_maturity_date=None):
+             counterparty=None, book='A:LG:ALM TREASURY:REPBND:U', far_maturity_date=None, bank_broker=None):
 
     # load default ticket template and bank counterparties
     rsab_fwd_tkt = pd.read_excel('Template_BondFwd.xlsx', index_col='Key')
@@ -20,7 +20,7 @@ def rsab_fwd(bond=None, forward_yield=0.10, number_of_units=0, transaction_date=
     rsab_fwd_tkt.loc['tradeReference'] = trade_ref
     rsab_fwd_tkt.loc['transactionDate'] = transaction_date
     rsab_fwd_tkt.loc['book'] = book
-    rsab_fwd_tkt.loc['counterparty'] = banks.loc[counterparty, 'Bank Name']+'|Global Markets Liberty'
+    rsab_fwd_tkt.loc['counterparty'] = banks.loc[bank_broker, 'Bank Name']+'|Global Markets Liberty'
     rsab_fwd_tkt.loc['numberOfUnits'] = number_of_units
     rsab_fwd_tkt.loc['specialInfo1'] = repo_rate
     rsab_fwd_tkt.loc['specialInfo2'] = trader
