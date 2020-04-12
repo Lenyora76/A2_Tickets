@@ -5,11 +5,24 @@ from datetime import datetime
 today = datetime(datetime.today().year, datetime.today().month, datetime.today().day, 12, 0, 0)  # clunky
 
 
-def rsa_bond_ed(bond=None, trade_yield_or_price=0.00, number_of_units=0, transaction_date=today, unexcor_code='FYN544',
-                bank_broker=None, trader=None, counterparty='Government of South Africa', forward_yield=0.10,
-                repo_rate=0.00, book='A:LG:ALM TREASURY:REPBND:U', far_maturity_date=None):
+def rsa_bond_ed(**kwargs):
 
-    mkt_ext_spot_tkt = rsab(bank_broker=)
-    mkt_int_spot_tkt = rsab()
+    yyyy = far_maturity_date.strftime("%Y")
+    mm = far_maturity_date.strftime("%m")
+    dd = far_maturity_date.strftime("%d")
+
+    mkt_ext_spot_tkt = rsab(**kwargs)
+    mkt_int_spot_tkt = rsab(**kwargs)
+    trs_int_spot_tkt = rsab(**kwargs)
+    trs_int_fwd_tkt = rsab_fwd()
+    ed_int_fwd_tkt = rsab_fwd()
+
+    mkt_ext_spot_tkt.to_excel(f'{bond}_ext_spot.xlsx')
+    mkt_int_spot_tkt.to_excel(f'{bond}_int_spot_mkt.xlsx')
+    trs_int_spot_tkt.to_excel(f'{bond}_int_spot_trs.xlsx')
+    trs_int_fwd_tkt.to_excel(f'{bond}_int_fwd_trs.xlsx')
+    ed_int_fwd_tkt.to_excel(f'{bond}_int_fwd_ed.xlsx')
+
+# Test
 
 
