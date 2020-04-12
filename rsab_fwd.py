@@ -9,7 +9,7 @@ def rsab_fwd(bond=None, forward_yield=0.10, number_of_units=0, transaction_date=
 
     # load default ticket template and bank counterparties
     rsab_fwd_tkt = pd.read_excel('Template_BondFwd.xlsx', index_col='Key')
-    banks = pd.read_excel('A2_Booking_Parameters.xlsx', sheet_name='Banks', index_col='Bank Code')
+    # banks = pd.read_excel('A2_Booking_Parameters.xlsx', sheet_name='Banks', index_col='Bank Code')
 
     yyyy = far_maturity_date.strftime("%Y")
     mm = far_maturity_date.strftime("%m")
